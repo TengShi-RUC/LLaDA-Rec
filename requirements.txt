@@ -1,0 +1,11 @@
+accelerate==1.10.0
+flash_attn==2.8.3
+numpy==2.3.5
+PyYAML==6.0.2
+PyYAML==6.0.3
+Requests==2.32.5
+scikit_learn==1.7.2
+sentence_transformers==5.1.0
+torch==2.6.0+cu124
+tqdm==4.67.1
+transformers==4.55.0

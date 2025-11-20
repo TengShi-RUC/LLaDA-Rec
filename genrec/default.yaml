@@ -9,8 +9,7 @@ rand_seed: 2024
 reproducibility: True
 run_time: ~
 
-# max_users: 1000000
-max_users: 100  # 取出一部分用于调试
+max_users: 1000000
 
 
 train_batch_size: 256

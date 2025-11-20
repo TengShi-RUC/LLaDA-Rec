@@ -260,13 +260,10 @@ class MultiVectorQuantizer(nn.Module):
                           self.num_quantizers,
                           self.e_dim,
                           device=x.device)
-        # residual = x
+
         x_chunk = torch.chunk(x, self.num_quantizers, dim=1)
         for level, quantizer in enumerate(self.vq_layers):
-            # x_res, loss, indices = quantizer(residual, use_sk=use_sk)
             x_quant, loss, indices = quantizer(x_chunk[level], use_sk=use_sk)
-            # residual = residual - x_res
-            # x_q = x_q + x_res
 
             x_q[:, level, :] = x_quant
 

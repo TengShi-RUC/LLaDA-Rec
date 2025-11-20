@@ -91,8 +91,6 @@ class MultiHeadVQVAETokenizer(SemIDTokenizer):
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
-            # self.scheduler.step()
-            # print(self.scheduler.get_last_lr())
             total_loss += loss.item()
             total_recon_loss += loss_recon.item()
             total_quant_loss += quant_loss.item()
@@ -121,23 +119,12 @@ class MultiHeadVQVAETokenizer(SemIDTokenizer):
             sk_iters=self.config['vqvae_sk_iters']).to(device)
         self.log(vqvae_model)
 
-        # if os.path.exists(model_path):
-        #     self.log(
-        #         f"[TOKENIZER] Loading MultiVQ-VAE model from {model_path}...")
-        #     # vqvae_model.load_state_dict(torch.load(model_path))
-        #     vqvae_model.load_state_dict(
-        #         torch.load(model_path,
-        #                    map_location=self.config['device'],
-        #                    weights_only=False))
-        #     return vqvae_model
-
         # Model training
         batch_size = self.config['vqvae_batch_size']
         num_epochs = self.config['vqvae_epoch']
-        # beta = self.config['vqvae_beta']
         verbose = self.config['vqvae_verbose']
 
-        # TODO: debug 先不用
+        
         vqvae_l2 = float(self.config['vqvae_l2'])
         if self.config['vqvae_optimizer'].lower() == 'adam':
             optimizer = torch.optim.Adam(vqvae_model.parameters(),
@@ -287,7 +274,7 @@ class MultiHeadVQVAETokenizer(SemIDTokenizer):
 
         use_sk = (self.config['vqvae_sk_epsilon']
                   > 0) and (self.config['vqvae_sk_iters'] > 0)
-        # TODO: debug
+        
         if use_sk:
             for _ in range(30):
                 # for _ in range(1):

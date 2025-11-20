@@ -1,0 +1,35 @@
+# Overwritting configs
+metadata: sentence    # Overwrite data config file, TIGER only supports sentence metadata
+
+# Config for sentence embedding model
+sent_emb_model: sentence-t5-base
+sent_emb_batch_size: 512
+sent_emb_dim: 768
+sent_emb_pca: 128     # -1 means no PCA, otherwise PCA dimension
+
+sem_ids_dir: sem_ids
+sem_ids_path: ~
+
+# Config for vq
+vq_n_codebooks: 4
+vq_codebook_size: 256
+
+vqvae_optimizer: AdamW
+# Config for vq-VAE
+vqvae_hidden_sizes: [512,256]
+vqvae_e_dim: 32
+vqvae_dropout: 0.0
+vqvae_lr: 0.001
+vqvae_l2: 1e-4
+vqvae_batch_size: 2048
+vqvae_epoch: 10000
+vqvae_verbose: 50
+vqvae_beta: 0.25
+vqvae_sk_epsilon: 0.003
+vqvae_sk_iters: 10
+
+vqvae_quant_weight: 1.0
+vqvae_bn: False
+kmeans_init: True
+kmeans_iters: 100
+vqvae_save_method: collision # loss / collision

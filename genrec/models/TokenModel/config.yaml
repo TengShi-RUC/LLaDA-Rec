@@ -1,0 +1,2 @@
+# placeholder model for tranining tokenizer
+max_item_seq_len: 20

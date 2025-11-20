@@ -1,0 +1,30 @@
+# Overwritting configs
+metadata: sentence
+lr: 0.003             # Overwrite learning rate
+weight_decay: 0.05    # Overwrite weight decay
+
+tokenizer_name: MultiHeadVQVAE
+
+max_item_seq_len: 20
+
+dropout_rate: 0.1
+activation_type: silu
+bias_for_layer_norm: False
+block_type: llama
+d_model: 256
+mlp_ratio: 4
+init_fn: mitchell
+layer_norm_type: rms
+n_heads: 4
+n_kv_heads: 4
+n_layers: 4
+rope: False
+rope_theta: 500000.0
+weight_tying: False
+
+his_mask_w: 1
+
+gen_steps: 4
+val_num_beams: 1
+num_beams: 50
+temperature: 1.0
